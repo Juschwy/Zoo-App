@@ -35,8 +35,8 @@ public class TicketController {
         return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 
-    @GetMapping(":id")
-    public ResponseEntity<Ticket> getTicket(@RequestParam UUID id){
+    @GetMapping("{id}")
+    public ResponseEntity<Ticket> getTicket(@PathVariable UUID id){
         Optional<Ticket> ticket = tickets.stream().filter((ticket1 -> ticket1.getId().toString().equals(id.toString()))).findFirst();
         if (ticket.isPresent()){
             return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
