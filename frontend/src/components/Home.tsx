@@ -1,13 +1,14 @@
-
-
-function Home () {
-    return(
+function Home() {
+    return (
         <>
-            <h1>
-                Home
-            </h1>
+            <div className={"title"}>
+                <h1>
+                    Home
+                </h1>
+            </div>
         </>
 
     )
 }
-export default  Home;
+
+export default Home;
