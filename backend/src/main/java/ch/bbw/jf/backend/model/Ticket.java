@@ -1,6 +1,7 @@
 package ch.bbw.jf.backend.model;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -20,6 +21,7 @@ public class Ticket {
     private LocalDateTime validTo;
     private Map<TicketCategory, Integer> orderContent;
     private String idId;
+    private int prize;
 
     public Ticket(String customerFirstname, String customerLastname, LocalDateTime validFrom, LocalDateTime validTo, Map<TicketCategory, Integer> orderContent, String idId) {
         id = UUID.randomUUID();
@@ -30,6 +32,7 @@ public class Ticket {
         this.validTo = validTo;
         this.orderContent = orderContent;
         this.idId = idId;
+        prize = orderContent.entrySet().stream().reduce(0, (sum, entry) -> sum + (entry.getKey().getPrize() * entry.getValue()), Integer::sum);
     }
 
     public Ticket(String customerFirstname, String customerLastname, LocalDateTime validFrom, LocalDateTime validTo, Map<TicketCategory, Integer> orderContent) {
@@ -94,5 +97,9 @@ public class Ticket {
 
     public String getIdId() {
         return idId;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

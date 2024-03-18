@@ -19,6 +19,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/tickets")
+@CrossOrigin("http://localhost:5173")
 public class TicketController {
     private List<Ticket> tickets;
 
