@@ -1,7 +1,7 @@
-import {createTicket, getTicket, getTickets} from "./api.ts";
+import {createTicket, getTicket, getTicketCategories, getTicketCategory, getTickets} from "./api.ts";
 
 function App() {
-    window.tx = {getTicket, getTickets, createTicket}
+    window.tx = {getTicket, getTickets, createTicket, getTicketCategory, getTicketCategories}
 
     return (
         <>
