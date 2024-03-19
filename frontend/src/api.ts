@@ -37,6 +37,9 @@ export function createTicket(customerFirstname: string, customerLastname: string
 }, idId: string): Promise<Ticket> {
     return fetch(TICKETS_URL, {
         method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             customerFirstname,
             customerLastname,
