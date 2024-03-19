@@ -1,13 +1,14 @@
-
-
-function AboutUs () {
-    return(
+function AboutUs() {
+    return (
         <>
-            <h1>
-                AboutUs
-            </h1>
+            <div className={"title"}>
+                <h1>
+                    AboutUs
+                </h1>
+            </div>
         </>
 
     )
 }
-export default  AboutUs;
+
+export default AboutUs;

@@ -1,13 +1,14 @@
-
-
-function Tickets () {
-    return(
+function Tickets() {
+    return (
         <>
-            <h1>
-                Tickets
-            </h1>
+            <div className={"title"}>
+                <h1>
+                    Tickets
+                </h1>
+            </div>
         </>
 
     )
 }
-export default  Tickets;
+
+export default Tickets;
