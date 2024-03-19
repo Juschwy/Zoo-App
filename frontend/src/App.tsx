@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import './App.css'
+import ZooHeader from "./components/ZooHeader";
 
 function App() {
     const [count, setCount] = useState(0)
@@ -8,7 +9,10 @@ function App() {
         <>
             <header>
                 <a href={"/aboutus"}>About Us</a>
+                <ZooHeader/>
             </header>
+
+
 
             <h1>Zoo App</h1>
             <div className="card">
@@ -23,7 +27,7 @@ function App() {
                 Click on the Vite and React logos to learn more
             </footer>
         </>
-    )
+    );
 }
 
-export default App
+export default App;
