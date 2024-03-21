@@ -2,13 +2,15 @@ package ch.bbw.jf.backend.controller;
 
 import ch.bbw.jf.backend.model.CreateTicketDTO;
 import ch.bbw.jf.backend.model.Ticket;
-import ch.bbw.jf.backend.model.TicketCategory;
+import ch.bbw.jf.backend.repository.TicketUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Class: TicketController
@@ -18,40 +20,45 @@ import java.util.*;
  */
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping({"/tickets/", "/tickets"})
 @CrossOrigin("http://localhost:5173")
 public class TicketController {
-    private List<Ticket> tickets;
+    private final TicketUserRepository ticketUserRepository;
 
-    public TicketController(List<Ticket> tickets) {
-        this.tickets = tickets;
-        Map<TicketCategory, Integer> order = new HashMap<>();
-        order.put(TicketCategory.ADULT, 1);
-        tickets.add(new Ticket("Ano", "Nymous", LocalDateTime.MIN, LocalDateTime.MAX, order));
-        tickets.add(new Ticket("Ano", "Nymous", LocalDateTime.MIN, LocalDateTime.MAX, order, "TEST"));
+    @Autowired
+    public TicketController(TicketUserRepository ticketUserRepository) {
+        this.ticketUserRepository = ticketUserRepository;
     }
 
     @GetMapping
-    public ResponseEntity<List<Ticket>> getTickets(){
-        return new ResponseEntity<>(tickets, HttpStatus.OK);
+    public ResponseEntity<List<Ticket>> getTickets(Authentication authentication) {
+        try {
+            return new ResponseEntity<>(ticketUserRepository.findTicketsByUsername(authentication.getName()), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Ticket> getTicket(@PathVariable UUID id){
-        Optional<Ticket> ticket = tickets.stream().filter((ticket1 -> ticket1.getId().toString().equals(id.toString()))).findFirst();
-        if (ticket.isPresent()){
-            return new ResponseEntity<>(ticket.get(), HttpStatus.OK);
-        }
-        else {
+    public ResponseEntity<Ticket> getTicket(@PathVariable UUID id) {
+        try {
+            return new ResponseEntity<>(ticketUserRepository.findTicketById(id), HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createTicket(@RequestBody CreateTicketDTO ticketDTO){
-        System.out.println(ticketDTO.getIdId());
-        Ticket ticket = new Ticket(ticketDTO.getCustomerFirstname(), ticketDTO.getCustomerLastname(), ticketDTO.getValidFrom(), ticketDTO.getValidTo(), ticketDTO.getOrderContent());
-        tickets.add(ticket);
-        return new ResponseEntity<>(ticket, HttpStatus.OK);
+    public ResponseEntity<Ticket> createTicket(Authentication authentication, @RequestBody CreateTicketDTO ticketDTO) {
+        try {
+            return new ResponseEntity<>(ticketUserRepository.createTicket(authentication.getName(),
+                    ticketDTO.getValidFrom(),
+                    ticketDTO.getValidTo(),
+                    ticketDTO.getOrderContent(),
+                    ticketDTO.getIdId()),
+                    HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

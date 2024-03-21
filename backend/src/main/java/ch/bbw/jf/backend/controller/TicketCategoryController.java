@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Class: TicketCategoryController
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
  */
 
 @RestController
-@RequestMapping("/ticket-categories")
+@RequestMapping({"/ticket-categories/", "/ticket-categories"})
 @CrossOrigin("http://localhost:5173")
 public class TicketCategoryController {
     @GetMapping
@@ -31,12 +29,9 @@ public class TicketCategoryController {
     @GetMapping("{categoryString}")
     public ResponseEntity<GetTicketCategoryDTO> getTicketCategory(@PathVariable String categoryString){
         Optional<TicketCategory> category = Arrays.stream(TicketCategory.values()).filter(category1 -> category1.name().equals(categoryString)).findFirst();
-        if (category.isPresent()){
-            return new ResponseEntity<>(new GetTicketCategoryDTO(category.get()), HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return category
+                .map(ticketCategory -> new ResponseEntity<>(new GetTicketCategoryDTO(ticketCategory), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 
     }
 }
