@@ -1,6 +1,6 @@
 package ch.bbw.jf.backend.controller;
 
-import ch.bbw.jf.backend.model.CreateTicketDTO;
+import ch.bbw.jf.backend.model.TicketCreateDTO;
 import ch.bbw.jf.backend.model.Ticket;
 import ch.bbw.jf.backend.repository.TicketUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,10 @@ public class TicketController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Ticket> getTicket(@PathVariable UUID id) {
+    public ResponseEntity<Ticket> getTicket(Authentication authentication, @PathVariable UUID id) {
+        if (authentication.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ADMIN"))){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         try {
             return new ResponseEntity<>(ticketUserRepository.findTicketById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -49,7 +52,7 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createTicket(Authentication authentication, @RequestBody CreateTicketDTO ticketDTO) {
+    public ResponseEntity<Ticket> createTicket(Authentication authentication, @RequestBody TicketCreateDTO ticketDTO) {
         try {
             return new ResponseEntity<>(ticketUserRepository.createTicket(authentication.getName(),
                     ticketDTO.getValidFrom(),

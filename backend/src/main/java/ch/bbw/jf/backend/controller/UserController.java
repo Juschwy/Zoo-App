@@ -2,7 +2,7 @@ package ch.bbw.jf.backend.controller;
 
 import ch.bbw.jf.backend.model.TicketUser;
 import ch.bbw.jf.backend.model.TicketUserCreateDTO;
-import ch.bbw.jf.backend.model.TicketUserResponseDTO;
+import ch.bbw.jf.backend.model.TicketUserDTO;
 import ch.bbw.jf.backend.repository.TicketUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,11 +28,11 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketUserResponseDTO> createUser(@RequestBody TicketUserCreateDTO dto){
+    public ResponseEntity<TicketUserDTO> createUser(@RequestBody TicketUserCreateDTO dto){
         System.out.println("/users:POST");
         try {
             TicketUser user = ticketUserRepository.createUser(dto.getUsername(), dto.getPassword(), dto.getFirstname(), dto.getLastname());
-            return new ResponseEntity<>(new TicketUserResponseDTO(user.getFirstname(), user.getLastname(), user.getUsername()), HttpStatus.CREATED);
+            return new ResponseEntity<>(new TicketUserDTO(user.getFirstname(), user.getLastname(), user.getUsername()), HttpStatus.CREATED);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

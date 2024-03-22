@@ -31,7 +31,7 @@ public class TicketUser {
     }
 
     public TicketUser(String firstname, String lastname, String username, String password, UserDetailsManager userDetailsManager) {
-        this(firstname, lastname, username, password, userDetailsManager, "standard");
+        this(firstname, lastname, username, password, userDetailsManager, "USER");
     }
 
 

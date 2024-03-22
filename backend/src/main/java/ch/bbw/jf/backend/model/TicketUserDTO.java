@@ -6,12 +6,12 @@ package ch.bbw.jf.backend.model;
  * @author Schules
  * @version 21.03.2024
  */
-public class TicketUserResponseDTO {
+public class TicketUserDTO {
     private final String lastname;
     private final String firstname;
     private final String username;
 
-    public TicketUserResponseDTO(String lastname, String firstname, String username) {
+    public TicketUserDTO(String lastname, String firstname, String username) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.username = username;

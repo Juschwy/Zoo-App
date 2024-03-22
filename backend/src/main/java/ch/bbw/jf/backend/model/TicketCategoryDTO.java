@@ -6,11 +6,11 @@ package ch.bbw.jf.backend.model;
  * @author Schules
  * @version 14.03.2024
  */
-public class GetTicketCategoryDTO {
+public class TicketCategoryDTO {
     private String name;
     private int prize;
 
-    public GetTicketCategoryDTO(TicketCategory category) {
+    public TicketCategoryDTO(TicketCategory category) {
         this.name = category.name();
         this.prize = category.getPrize();
     }

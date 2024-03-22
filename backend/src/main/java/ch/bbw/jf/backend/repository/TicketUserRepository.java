@@ -28,7 +28,7 @@ public class TicketUserRepository {
     public TicketUserRepository(UserDetailsService userDetailsService) {
         this.userDetailsManager = (UserDetailsManager) userDetailsService;
         users = new ArrayList<>();
-        createUser("ano.nymous@email.com", "{noop}asdf", "Ano", "Nymous", "admin");
+        createUser("ano.nymous@email.com", "{noop}asdf", "Ano", "Nymous", "ADMIN");
         createUser("inko.gnito@email.com", "{noop}asdf", "Inko", "Gnito");
     }
 
