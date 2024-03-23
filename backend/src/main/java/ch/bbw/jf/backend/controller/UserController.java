@@ -28,11 +28,11 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<TicketUserDTO> createUser(@RequestBody TicketUserCreateDTO dto){
+    public ResponseEntity<Object> createUser(@RequestBody TicketUserCreateDTO dto){
         System.out.println("/users:POST");
         try {
             TicketUser user = ticketUserRepository.createUser(dto.getUsername(), dto.getPassword(), dto.getFirstname(), dto.getLastname());
-            return new ResponseEntity<>(new TicketUserDTO(user.getFirstname(), user.getLastname(), user.getUsername()), HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

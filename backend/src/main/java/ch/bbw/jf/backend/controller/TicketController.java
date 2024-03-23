@@ -2,6 +2,7 @@ package ch.bbw.jf.backend.controller;
 
 import ch.bbw.jf.backend.model.TicketCreateDTO;
 import ch.bbw.jf.backend.model.Ticket;
+import ch.bbw.jf.backend.model.TicketUserRole;
 import ch.bbw.jf.backend.repository.TicketUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,27 +42,28 @@ public class TicketController {
 
     @GetMapping("{id}")
     public ResponseEntity<Ticket> getTicket(Authentication authentication, @PathVariable UUID id) {
-        if (authentication.getAuthorities().stream().anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ADMIN"))){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        if (authentication.getAuthorities().stream().noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("SCOPE_" + TicketUserRole.ADMIN.name()))){
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+            try {
+                return new ResponseEntity<>(ticketUserRepository.findTicketById(id), HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
-        try {
-            return new ResponseEntity<>(ticketUserRepository.findTicketById(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
-    @PostMapping
-    public ResponseEntity<Ticket> createTicket(Authentication authentication, @RequestBody TicketCreateDTO ticketDTO) {
-        try {
-            return new ResponseEntity<>(ticketUserRepository.createTicket(authentication.getName(),
-                    ticketDTO.getValidFrom(),
-                    ticketDTO.getValidTo(),
-                    ticketDTO.getOrderContent(),
-                    ticketDTO.getIdId()),
-                    HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        @PostMapping
+        public ResponseEntity<Ticket> createTicket (Authentication authentication, @RequestBody TicketCreateDTO
+        ticketDTO){
+            try {
+                return new ResponseEntity<>(ticketUserRepository.createTicket(authentication.getName(),
+                        ticketDTO.getValidFrom(),
+                        ticketDTO.getValidTo(),
+                        ticketDTO.getOrderContent(),
+                        ticketDTO.getIdId()),
+                        HttpStatus.CREATED);
+            } catch (Exception e) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
         }
     }
-}

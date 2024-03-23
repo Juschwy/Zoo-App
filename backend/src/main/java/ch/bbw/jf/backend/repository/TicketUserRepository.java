@@ -3,6 +3,7 @@ package ch.bbw.jf.backend.repository;
 import ch.bbw.jf.backend.model.Ticket;
 import ch.bbw.jf.backend.model.TicketCategory;
 import ch.bbw.jf.backend.model.TicketUser;
+import ch.bbw.jf.backend.model.TicketUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -28,12 +29,12 @@ public class TicketUserRepository {
     public TicketUserRepository(UserDetailsService userDetailsService) {
         this.userDetailsManager = (UserDetailsManager) userDetailsService;
         users = new ArrayList<>();
-        createUser("ano.nymous@email.com", "{noop}asdf", "Ano", "Nymous", "ADMIN");
+        createUser("ano.nymous@email.com", "{noop}asdf", "Ano", "Nymous", TicketUserRole.ADMIN);
         createUser("inko.gnito@email.com", "{noop}asdf", "Inko", "Gnito");
     }
 
-    public TicketUser createUser(String username, String password, String firstname, String lastname, String authority) {
-        TicketUser user = new TicketUser(firstname, lastname, username, password, userDetailsManager, authority);
+    public TicketUser createUser(String username, String password, String firstname, String lastname, TicketUserRole role) {
+        TicketUser user = new TicketUser(firstname, lastname, username, password, userDetailsManager, role);
         users.add(user);
         return user;
     }

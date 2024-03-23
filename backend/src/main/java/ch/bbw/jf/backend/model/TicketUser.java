@@ -16,22 +16,24 @@ public class TicketUser {
     private final String firstname;
     private final String lastname;
     private final String username;
+    private final TicketUserRole role;
     private final List<Ticket> tickets;
 
-    public TicketUser(String firstname, String lastname, String username, String password, UserDetailsManager userDetailsManager, String authority) {
+    public TicketUser(String firstname, String lastname, String username, String password, UserDetailsManager userDetailsManager, TicketUserRole role) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
+        this.role = role;
         userDetailsManager.createUser(User
                 .withUsername(username)
                 .password(password)
-                .authorities(authority)
+                .authorities(role.name())
                 .build());
         tickets = new ArrayList<>();
     }
 
     public TicketUser(String firstname, String lastname, String username, String password, UserDetailsManager userDetailsManager) {
-        this(firstname, lastname, username, password, userDetailsManager, "USER");
+        this(firstname, lastname, username, password, userDetailsManager, TicketUserRole.USER);
     }
 
 
@@ -49,5 +51,9 @@ public class TicketUser {
 
     public String getUsername() {
         return username;
+    }
+
+    public TicketUserRole getRole() {
+        return role;
     }
 }
