@@ -1,11 +1,12 @@
-const BASE_URL = "http://localhost:8080"
+const PROTOCOL = "http://"
+const DOMAIN = "localhost:8080"
+const BASE_URL = PROTOCOL + DOMAIN
 const TICKETS_URL = BASE_URL + "/tickets"
 const TICKETCATEGORIES_URL = BASE_URL + "/ticket-categories"
+const USER_URL = BASE_URL + "/users"
 
 type Ticket = {
     id: string,
-    customerFirstname: string,
-    customerLastname: string,
     validFrom: Date,
     validTo: Date,
     orderContent: {string: number},
@@ -13,43 +14,46 @@ type Ticket = {
     prize: number
 }
 
+type User = {
+    firstname: string,
+    lastname: string,
+    username: string,
+    token: string,
+    role: "ADMIN" | "USER"
+}
+
 type TicketCategory = {
     name: string,
     prize: number
 }
 
-export function getTickets(): Promise<Ticket[]>{
-    return fetch(TICKETS_URL, {
-        method: "GET"
-    })
-        .then(res => res.json())
-}
-
-export function getTicket(id: string): Promise<Ticket>{
-    return fetch(TICKETS_URL + "/" + id, {
-        method: "GET"
-    })
-        .then(res => res.json())
-}
-
-export function createTicket(customerFirstname: string, customerLastname: string, validFrom: Date, validTo: Date, orderContent: {
-    string: number
-}, idId: string): Promise<Ticket> {
-    return fetch(TICKETS_URL, {
-        method: "POST",
+function authorizedFetch(method: "GET" | "POST", path: string, token: string, body: object = {}){
+    return fetch(path, {
+        method: method,
         headers: {
-            'Content-Type': 'application/json'
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            customerFirstname,
-            customerLastname,
-            validFrom,
-            validTo,
-            orderContent,
-            idId
-        })
+        body: JSON.stringify(body)
     })
         .then(res => res.json())
+}
+
+export function getTickets(token: string): Promise<Ticket[]>{
+    return authorizedFetch("GET", TICKETS_URL, token)
+}
+
+export function getTicket(id: string, token: string): Promise<Ticket>{
+    return authorizedFetch("GET", TICKETS_URL + "/" + id, token)
+}
+
+export function createTicket(token: string, validFrom: Date, validTo: Date, orderContent: {string: number}, idId: string): Promise<Ticket> {
+    return authorizedFetch("POST", TICKETS_URL, token, {
+        validFrom,
+        validTo,
+        orderContent,
+        idId
+    })
 }
 
 export function getTicketCategories(): Promise<TicketCategory[]>{
@@ -64,4 +68,26 @@ export function getTicketCategory(name: string): Promise<TicketCategory>{
         method: "GET"
     })
         .then(res => res.json())
+}
+
+export function getToken(username: string, password: string): Promise<User>{
+    return fetch(PROTOCOL + username + ":" + password + "@" + DOMAIN + "/token", {
+        method: "POST"
+    })
+        .then(res => res.json())
+}
+
+export function createUser(firstname: string, lastname: string, username: string, password: string){
+    return fetch(USER_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            firstname,
+            lastname,
+            username,
+            password
+        })
+    })
 }
