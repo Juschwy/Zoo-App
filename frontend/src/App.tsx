@@ -1,7 +1,17 @@
-import {createTicket, getTicket, getTicketCategories, getTicketCategory, getTickets} from "./api.ts";
+import {
+    createTicket,
+    createUser,
+    getTicket,
+    getTicketCategories,
+    getTicketCategory,
+    getTickets,
+    getToken
+} from "./api.ts";
 
 function App() {
-    window.tx = {getTicket, getTickets, createTicket, getTicketCategory, getTicketCategories}
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    window.tx = {getTicket, getTickets, createTicket, getTicketCategories, getTicketCategory, getToken, createUser}
 
     return (
         <>

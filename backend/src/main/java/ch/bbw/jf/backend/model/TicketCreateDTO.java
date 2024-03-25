@@ -2,7 +2,6 @@ package ch.bbw.jf.backend.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Class: CreateTicketDTO
@@ -10,7 +9,7 @@ import java.util.UUID;
  * @author Schules
  * @version 12.03.2024
  */
-public class CreateTicketDTO {
+public class TicketCreateDTO {
     private String customerFirstname;
     private String customerLastname;
     private LocalDateTime validFrom;
@@ -18,7 +17,7 @@ public class CreateTicketDTO {
     private Map<TicketCategory, Integer> orderContent;
     private String idId;
 
-    public CreateTicketDTO(String customerFirstname, String customerLastname, LocalDateTime validFrom, LocalDateTime validTo, Map<TicketCategory, Integer> orderContent, String idId) {
+    public TicketCreateDTO(String customerFirstname, String customerLastname, LocalDateTime validFrom, LocalDateTime validTo, Map<TicketCategory, Integer> orderContent, String idId) {
         this.customerFirstname = customerFirstname;
         this.customerLastname = customerLastname;
         this.validFrom = validFrom;
