@@ -17,3 +17,18 @@ footer {
 .title {
     margin: 5rem;
 }
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minimum and maximum column widths as needed */
+    gap: 20px; /* Adjust the gap between grid items as needed */
+}
+
+.cardItem {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.schriftCard {
+    height: 40px;
+}

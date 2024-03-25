@@ -1,4 +1,5 @@
 import {createTicket, getTicket, getTickets} from "./api.ts";
+import MainPage from "./components/MainPage";
 
 function App() {
     window.tx = {getTicket, getTickets, createTicket}
@@ -7,6 +8,7 @@ function App() {
         <>
             <div className={"title"}>
                 <h1>Willkommen zur Website des Zoo Zürichs</h1>
+                <MainPage />
             </div>
         </>
     )
