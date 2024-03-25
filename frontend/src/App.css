@@ -22,3 +22,9 @@ img{
 .title {
     margin: 5rem;
 }
+p{
+    padding-top: 10px;
+}
+.textBlock {
+    padding-top: 20px
+}
