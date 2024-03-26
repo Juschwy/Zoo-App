@@ -66,7 +66,7 @@ function AppBarComponent() {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-                            {pages.map((page: any) => (
+                            {pages.map((page) => (
                                 <MenuItem key={page.name} onClick={handleCloseNavMenu} component={Link} to={page.path}>
                                     <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
@@ -75,7 +75,7 @@ function AppBarComponent() {
                     </Box>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {pages.map((page: any) => (
+                        {pages.map((page) => (
                             <Button
                                 key={page.name}
                                 component={Link}
@@ -110,7 +110,7 @@ function AppBarComponent() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting: any) => (
+                            {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
