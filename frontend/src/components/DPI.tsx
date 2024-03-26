@@ -17,7 +17,7 @@ function DPI() {
                 erhalten wir diese Daten</h3><p>In erster Linie bearbeiten wir Personendaten, die Sie uns
                 übermitteln oder die wir beim Betrieb unserer Website sammeln. Unter Umständen erhalten wir
                 Personendaten über Sie auch von Dritten. Das können folgende Kategorien sein:</p>
-                <ul>
+                <ul style={{listStyle: "none"}}>
                     <li>Personenstammdaten (Name, Adresse, Geburtsdaten, etc.);</li>
                     <li>Kontaktdaten (Handynummer, E-Mailadresse, etc.);</li>
                     <li>Finanzdaten (bspw. Kontoangaben);</li>
@@ -34,7 +34,7 @@ function DPI() {
                 ausnahmsweise nicht in der Lage sind, diese Grundsätze zu befolgen, kann die
                 Datenbearbeitung trotzdem rechtmässig sein, weil ein Rechtfertigungsgrund vorliegt. Als
                 Rechtfertigungsgrund kommt namentlich in Frage:</p>
-                <ul>
+                <ul style={{listStyle: "none"}}>
                     <li>Ihre Einwilligung;</li>
                     <li>die Durchführung eines Vertrages oder vorvertraglicher Massnahmen;</li>
                     <li>unsere berechtigten Interessen, sofern Ihre Interessen nicht überwiegen.</li>
@@ -50,7 +50,7 @@ function DPI() {
                 oder von verbundenen Unternehmen in Anspruch zu nehmen und diese mit der Verarbeitung
                 Ihrer Daten zu beauftragen (sog. Auftragsverarbeiter). Kategorien der Empfänger sind
                 namentlich:</p>
-                <ul>
+                <ul style={{listStyle: "none"}}>
                     <li>Buchhaltung, Treuhand und Revisionsunternehmen;</li>
                     <li>Beratungsunternehmen (Rechtsberatung, Steuern, etc.);</li>
                     <li>IT-Dienstleister (Webhosting, Support, Clouddienste, Webseitengestaltung,
@@ -110,7 +110,7 @@ function DPI() {
                 zu senden.<br/><br/>Sie haben ausserdem das Recht, Ihre Daten in einem gängigen
                 Dateiformat zu erhalten, wenn wir Ihre Daten automatisiert bearbeiten, und wenn:
             </p>
-                <ul>
+                <ul style={{listStyle: "none"}}>
                     <li>Sie Ihre Einwilligung für die Bearbeitung dieser Daten erteilt haben; oder
                     </li>
                     <li>Sie Daten im Zusammenhang mit dem Abschluss oder der Abwicklung eines
@@ -129,10 +129,10 @@ function DPI() {
                 Berichtigung Ihrer Daten zu verlangen. Wir können das Gesuch abweisen, wenn
                 gesetzliche Vorschriften uns zur längeren bzw. unveränderten Aufbewahrung
                 verpflichten oder ein Erlaubnistatbestand Ihrem Gesuch entgegensteht.<br/><br/>Bitte
-                    beachten Sie, dass die Ausübung Ihrer Rechte unter Umständen im Konflikt mit
-                    vertraglichen Abmachungen stehen und entsprechende Auswirkungen auf die
-                    Vertragsdurchführung haben kann (z.B. vorzeitige Vertragsauflösung oder
-                    Kostenfolgen).</p><br/><h4>c. Rechtsweg</h4><p>Sind Sie von der Bearbeitung
+                beachten Sie, dass die Ausübung Ihrer Rechte unter Umständen im Konflikt mit
+                vertraglichen Abmachungen stehen und entsprechende Auswirkungen auf die
+                Vertragsdurchführung haben kann (z.B. vorzeitige Vertragsauflösung oder
+                Kostenfolgen).</p><br/><h4>c. Rechtsweg</h4><p>Sind Sie von der Bearbeitung
                 personenbezogener Daten betroffen, haben Sie das Recht, Ihre Rechte gerichtlich
                 durchzusetzen oder bei der zuständigen Aufsichtsbehörde eine Meldung
                 einzureichen. Die zuständige Aufsichtsbehörde in der Schweiz ist der
@@ -148,7 +148,7 @@ function DPI() {
                 automatisch zu Zwecken der Systemadministration, für statistische oder für
                 Sicherungszwecke oder für Trackingzwecke gespeichert. Es handelt sich dabei
                 um:</p>
-                <ul>
+                <ul style={{listStyle: "none"}}>
                     <li>den Namen Ihres Internetserviceproviders;</li>
                     <li>Ihre IP-Adresse (unter Umständen);</li>
                     <li>die Version Ihrer Browser-Software;</li>
@@ -159,26 +159,26 @@ function DPI() {
                     <li>die Suchwörter die Sie benutzt haben, um die URL finden.</li>
                 </ul>
                 <br/><h4>Weshalb dürfen wir diese Daten bearbeiten?</h4><p>Diese Daten können
-                    keiner bestimmten Person zugeordnet werden und es findet keine
-                    Zusammenführung dieser Daten mit anderen Datenquellen statt. Die Speicherung
-                    der Logfiles erfolgt, um die Funktionsfähigkeit der Webseite zu garantieren
-                    und zur Sicherstellung der Sicherheit unserer informationstechnischen
-                    Systeme. Hierin besteht unser berechtigtes Interesse.</p><br/><h4>Wie können
-                    Sie die Datenerfassung verhindern?</h4><p>Die Daten werden nur solange
-                    gespeichert, wie dies zur Erreichung des Zweckes Ihrer Erhebung notwendig
-                    ist. Dementsprechend werden die Daten nach Beendigung jeder Sitzung
-                    gelöscht. Die Speicherung der Logfiles ist für den Betrieb der Webseite
-                    zwingend notwendig, Sie haben daher keine Möglichkeit dagegen Widerspruch zu
-                    erheben.</p><br/> <br/><br/><h3>BrainBox Generatoren</h3> BrainBox Generatoren
-                    ist ein Dienst der <a href="https://brainbox.swiss/"
-                                          rel="nofollow" target="_blank">BrainBox Solutions
-                        GmbH</a>, um alle datenschutzrelevanten Dienste auf einer Website zu
-                    erkennen und unter anderem damit bei der Erstellung der Datenschutzerklärung
-                    zu helfen. Dabei werden keine personenbezogenen Daten erfasst oder
-                    verarbeitet.
+                keiner bestimmten Person zugeordnet werden und es findet keine
+                Zusammenführung dieser Daten mit anderen Datenquellen statt. Die Speicherung
+                der Logfiles erfolgt, um die Funktionsfähigkeit der Webseite zu garantieren
+                und zur Sicherstellung der Sicherheit unserer informationstechnischen
+                Systeme. Hierin besteht unser berechtigtes Interesse.</p><br/><h4>Wie können
+                Sie die Datenerfassung verhindern?</h4><p>Die Daten werden nur solange
+                gespeichert, wie dies zur Erreichung des Zweckes Ihrer Erhebung notwendig
+                ist. Dementsprechend werden die Daten nach Beendigung jeder Sitzung
+                gelöscht. Die Speicherung der Logfiles ist für den Betrieb der Webseite
+                zwingend notwendig, Sie haben daher keine Möglichkeit dagegen Widerspruch zu
+                erheben.</p><br/> <br/><br/><h3>BrainBox Generatoren</h3> BrainBox Generatoren
+                ist ein Dienst der <a href="https://brainbox.swiss/"
+                                      rel="nofollow" target="_blank">BrainBox Solutions
+                GmbH</a>, um alle datenschutzrelevanten Dienste auf einer Website zu
+                erkennen und unter anderem damit bei der Erstellung der Datenschutzerklärung
+                zu helfen. Dabei werden keine personenbezogenen Daten erfasst oder
+                verarbeitet.
             </div>
         </>
-);
+    );
 }
 
 export default DPI;
