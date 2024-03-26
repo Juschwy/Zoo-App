@@ -1,10 +1,11 @@
 import '../App.css'
 
-function Datenschutzerklaerung() {
+function Impressum() {
     return (
         <>
 
             <div className={"textBlock"}>
+                <h1>Impressum</h1>
                 <p><b>Verantwortliche Instanz:</b><br/>Zoo<br/>Zürich<br/>8000
                     Zürich<br/>Schweiz<br/><strong>E-Mail</strong>: zoo@zooh.ch<br/><br/><strong>Vertretungsberechtigte
                         Personen</strong><br/>Zoo Züri<br/><br/><strong>Name des Unternehmens</strong>:
@@ -25,7 +26,7 @@ function Datenschutzerklaerung() {
                     Gefahr
                     des jeweiligen Nutzers.<br/><br/><strong>Urheberrechtserklärung</strong><br/>Die Urheber- und alle
                     anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf dieser Website, gehören
-                    ausschliesslich \%company-name\% oder den speziell genannten Rechteinhabern. Für die Reproduktion
+                    ausschliesslich Zoo Zürich oder den speziell genannten Rechteinhabern. Für die Reproduktion
                     jeglicher Elemente ist die schriftliche Zustimmung des Urheberrechtsträgers im Voraus
                     einzuholen.<br/><br/><strong>Quelle</strong>: <a href='https://brainbox.swiss/'>BrainBox
                         Solutions</a>
@@ -36,4 +37,4 @@ function Datenschutzerklaerung() {
     )
 }
 
-export default Datenschutzerklaerung;
+export default Impressum;
