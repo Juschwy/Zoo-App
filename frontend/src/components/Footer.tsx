@@ -1,7 +1,9 @@
+import {NavLink} from "react-router-dom";
+
 function Footer() {
     return (
         <footer>
-            <a href={"/data"}>Datenschutz</a> <a href={"/impressum"}>Impressum</a>
+            <NavLink to={"/datenschutz"}>Datenschutz</NavLink> <NavLink to={"/impressum"}>Impressum</NavLink>
         </footer>
     );
 }

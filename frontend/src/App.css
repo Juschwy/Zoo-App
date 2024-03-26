@@ -19,12 +19,6 @@ img{
     padding: 1rem;
 }
 
-.title {
-    margin: 5rem;
-}
-p{
-    padding-top: 10px;
-}
-.textBlock {
-    padding-top: 20px
+#content{
+    margin-top: 70px;
 }

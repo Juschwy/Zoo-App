@@ -1,21 +1,27 @@
 import {useState, MouseEvent} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AppBar, Avatar, Box, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import zoo from "/zoo.svg";
 import '../App.css'
+import {User} from "../api.ts";
+
+type AppBarProps = {
+    user: User | undefined,
+    signOut: () => void
+}
 
 const pages = [
     {name: 'Home', path: '/'},
     {name: 'About Us', path: '/aboutUs'},
     {name: 'Tickets', path: '/tickets'}
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function AppBarComponent() {
+export default function Header(props: AppBarProps) {
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const navigate = useNavigate()
 
     const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -33,7 +39,7 @@ function AppBarComponent() {
     };
 
     return (
-        <AppBar position="fixed" sx={{"background-color": "#08b411"}}>
+        <AppBar position={"fixed"} sx={{"background-color": "#08b411"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img src={zoo} alt={"Zoo Logo"}/>
@@ -91,7 +97,12 @@ function AppBarComponent() {
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                                {props.user ? (
+                                    <Avatar>{props.user.firstname.charAt(0) + props.user.lastname.charAt(0)}</Avatar>
+                                ) : (
+                                    <Avatar/>
+                                )}
+
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -110,11 +121,28 @@ function AppBarComponent() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            {props.user ? (
+                                <>
+                                    <MenuItem>
+                                        <Typography textAlign="center">{props.user.firstname} {props.user.lastname}</Typography>
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <Typography textAlign="center">{props.user.username}</Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={props.signOut}>
+                                        <Typography textAlign="center">Sign out</Typography>
+                                    </MenuItem>
+                                </>
+                            ) : (
+                                <>
+                                    <MenuItem onClick={() => navigate("/signin")}>
+                                        <Typography textAlign="center">Sign in</Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={() => navigate("/signup")}>
+                                        <Typography textAlign="center">Sign up</Typography>
+                                    </MenuItem>
+                                </>
+                            )}
                         </Menu>
                     </Box>
                 </Toolbar>
@@ -122,5 +150,3 @@ function AppBarComponent() {
         </AppBar>
     );
 }
-
-export default AppBarComponent;
