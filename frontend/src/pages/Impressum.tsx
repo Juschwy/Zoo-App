@@ -3,7 +3,6 @@ import '../App.css'
 function Impressum() {
     return (
         <>
-
             <div className={"textBlock"}>
                 <h1>Impressum</h1>
                 <p><b>Verantwortliche Instanz:</b><br/>Zoo<br/>Zürich<br/>8000

@@ -1,6 +1,7 @@
 function DPI() {
     return (
         <>
+            <h1>Datenschutzerklärung</h1>
             <div className={"textBlock"}>
                 <br/><p>Zuletzt aktualisiert am: 26.03.2024</p><br/><p>Wir legen grossen Wert darauf, dass der Umgang
                 mit

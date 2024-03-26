@@ -18,6 +18,8 @@ import {useEffect, useState} from "react";
 import SignIn from "./pages/SignIn.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import {NotFound} from "./pages/NotFound.tsx";
+import Impressum from "./pages/Impressum.tsx";
+import DPI from "./pages/DPI.tsx";
 
 function App() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -58,6 +60,8 @@ function App() {
                     <Route path={"/tickets"} element={<Tickets/>}/>
                     <Route path={"/signin"} element={<SignIn setUser={setUser}/>}/>
                     <Route path={"/signup"} element={<SignUp/>}/>
+                    <Route path={"/impressum"} element={<Impressum/>}/>
+                    <Route path={"/datenschutz"} element={<DPI/>}/>
                 </Routes>
             </div>
             <Footer/>
