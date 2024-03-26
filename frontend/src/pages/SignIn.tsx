@@ -23,7 +23,7 @@ export default function SignIn(props: SignInProps) {
                 let gotoPage = "/tickets"
                 if (user.role == "ADMIN") gotoPage = "/scan-tickets"
                 setAlert(<Alert severity="success">Logged in as {user.username}. Redirecting to <NavLink to={gotoPage}>{gotoPage}</NavLink></Alert>)
-                setTimeout(() => navigate(gotoPage), 5000)
+                setTimeout(() => navigate(gotoPage), 3000)
             })
             .catch(() => setAlert(<Alert severity="error">Password or Email is incorrect</Alert>))
     }
