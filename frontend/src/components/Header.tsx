@@ -1,8 +1,9 @@
-import React from "react";
+import {useState, MouseEvent} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {AppBar, Avatar, Box, Container, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
+import zoo from "/zoo.svg";
 import '../App.css'
 import {User} from "../api.ts";
 
@@ -18,14 +19,14 @@ const pages = [
 ];
 
 export default function Header(props: AppBarProps) {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const navigate = useNavigate()
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
 
@@ -41,24 +42,7 @@ export default function Header(props: AppBarProps) {
         <AppBar position={"fixed"} sx={{"background-color": "#08b411"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component={Link}
-                        to="/"
-                        sx={{
-                            mr: 2,
-                            display: {xs: 'none', md: 'flex'},
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        ZOO ZÜRICH
-                    </Typography>
-
+                    <img src={zoo} alt={"Zoo Logo"}/>
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             size="large"
@@ -88,7 +72,7 @@ export default function Header(props: AppBarProps) {
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
-                            {pages.map((page: any) => (
+                            {pages.map((page) => (
                                 <MenuItem key={page.name} onClick={handleCloseNavMenu} component={Link} to={page.path}>
                                     <Typography textAlign="center">{page.name}</Typography>
                                 </MenuItem>
@@ -97,7 +81,7 @@ export default function Header(props: AppBarProps) {
                     </Box>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {pages.map((page: any) => (
+                        {pages.map((page) => (
                             <Button
                                 key={page.name}
                                 component={Link}
