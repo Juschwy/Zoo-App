@@ -9,18 +9,16 @@ export default function SignUp() {
     const [lastname, setLastname] = useState("")
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
-    // @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const [alert, setAlert] = useState<any>("")
     const navigate = useNavigate();
 
-    function signup(e: MouseEvent) {
+    function signup(e: Event) {
         e.preventDefault()
         setAlert(<Alert severity="info">Creating account...</Alert>)
         createUser(firstname, lastname, username, "{noop}" + password)
             .then(() => {
-                setAlert(<Alert severity="success">Created account for {username}</Alert>)
-                navigate("/signin")
+                setAlert(<Alert severity="success">Created account for {username}. Redirecting to <NavLink to={"/signin"}>Sign in</NavLink></Alert>)
+                setTimeout(() => navigate("/signin"), 5000)
             })
             .catch(() => setAlert(<Alert severity="error">Failed to create account</Alert>))
     }

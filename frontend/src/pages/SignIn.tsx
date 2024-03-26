@@ -11,8 +11,6 @@ type SignInProps = {
 export default function SignIn(props: SignInProps) {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
-    // @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     const [alert, setAlert] = useState<any>("")
     const navigate = useNavigate();
 
@@ -22,11 +20,10 @@ export default function SignIn(props: SignInProps) {
         getToken(username, password)
             .then(user => {
                 props.setUser(user)
-                setAlert(<Alert severity="success">Logged in as {user.username}</Alert>)
-                if (user.role == "ADMIN") {
-                    navigate("/scan-tickets")
-                }
-                navigate("/tickets")
+                let gotoPage = "/tickets"
+                if (user.role == "ADMIN") gotoPage = "/scan-tickets"
+                setAlert(<Alert severity="success">Logged in as {user.username}. Redirecting to <NavLink to={gotoPage}>{gotoPage}</NavLink></Alert>)
+                setTimeout(() => navigate(gotoPage), 5000)
             })
             .catch(() => setAlert(<Alert severity="error">Password or Email is incorrect</Alert>))
     }

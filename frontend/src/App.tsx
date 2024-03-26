@@ -5,15 +5,16 @@ import {
     getTicketCategories,
     getTicketCategory,
     getTickets,
-    getToken, User
+    getToken,
+    User
 } from "./api.ts";
-import AppBar from "./components/AppBar.tsx";
+import Header from "./components/Header.tsx";
 import {Route, Routes} from "react-router-dom";
 import AboutUs from "./pages/AboutUs.tsx";
 import Tickets from "./pages/Tickets.tsx";
 import Footer from "./components/Footer.tsx";
 import Home from "./pages/Home.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import SignIn from "./pages/SignIn.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import {NotFound} from "./pages/NotFound.tsx";
@@ -24,9 +25,31 @@ function App() {
     window.tx = {getTicket, getTickets, createTicket, getTicketCategories, getTicketCategory, getToken, createUser}
     const [user, setUser] = useState<undefined | User>(undefined)
 
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem("USER", btoa(JSON.stringify(user)))
+        }
+    }, [user]);
+
+    useEffect(() => {
+        const userString = localStorage.getItem("USER")
+        try {
+            if (!userString) {
+                throw Error("No User")
+            }
+            setUser(JSON.parse(atob(userString)))
+        } catch (e) {
+            localStorage.removeItem("USER")
+        }
+    }, []);
+
+    function signOut(){
+        setUser(undefined)
+    }
+
     return (
         <>
-            <AppBar/>
+            <Header user={user} signOut={signOut}/>
             <div id={"content"}>
                 <Routes>
                     <Route path={"/"} element={<Home/>}/>
