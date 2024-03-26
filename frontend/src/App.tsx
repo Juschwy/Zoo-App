@@ -15,7 +15,7 @@ import Footer from "./components/Footer.tsx";
 import Home from "./pages/Home.tsx";
 import {useState} from "react";
 import SignIn from "./pages/SignIn.tsx";
-import {SignUp} from "./pages/SignUp.tsx";
+import SignUp from "./pages/SignUp.tsx";
 import {NotFound} from "./pages/NotFound.tsx";
 
 function App() {

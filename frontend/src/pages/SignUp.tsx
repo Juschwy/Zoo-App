@@ -1,14 +1,12 @@
-import {Dispatch, SetStateAction, useState} from "react";
+import {useState} from "react";
 import {Alert, Box, Container, Grid, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getToken, User} from "../api.ts";
+import {createUser} from "../api.ts";
 
-type SignInProps = {
-    setUser: Dispatch<SetStateAction<User | undefined>>
-}
-
-export default function SignIn(props: SignInProps) {
+export default function SignUp() {
+    const [firstname, setFirstname] = useState("")
+    const [lastname, setLastname] = useState("")
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
     // @typescript-eslint/ban-ts-comment
@@ -16,19 +14,15 @@ export default function SignIn(props: SignInProps) {
     const [alert, setAlert] = useState<any>("")
     const navigate = useNavigate();
 
-    function signin(e: MouseEvent) {
+    function signup(e: MouseEvent) {
         e.preventDefault()
-        setAlert(<Alert severity="info">Logging in...</Alert>)
-        getToken(username, password)
-            .then(user => {
-                props.setUser(user)
-                setAlert(<Alert severity="success">Logged in as {user.username}</Alert>)
-                if (user.role == "ADMIN") {
-                    navigate("/scan-tickets")
-                }
-                navigate("/tickets")
+        setAlert(<Alert severity="info">Creating account...</Alert>)
+        createUser(firstname, lastname, username, "{noop}" + password)
+            .then(() => {
+                setAlert(<Alert severity="success">Created account for {username}</Alert>)
+                navigate("/signin")
             })
-            .catch(() => setAlert(<Alert severity="error">Password or Email is incorrect</Alert>))
+            .catch(() => setAlert(<Alert severity="error">Failed to create account</Alert>))
     }
 
 
@@ -45,10 +39,30 @@ export default function SignIn(props: SignInProps) {
                             margin="normal"
                             required
                             fullWidth
+                            id="firstname"
+                            type="text"
+                            label="Firstname"
+                            autoFocus
+                            value={firstname}
+                            onChange={e => setFirstname(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="lastname"
+                            type="text"
+                            label="Lastname"
+                            value={lastname}
+                            onChange={e => setLastname(e.target.value)}
+                        />
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
                             id="email"
                             type="email"
                             label="Email Address"
-                            autoFocus
                             value={username}
                             onChange={e => setUsername(e.target.value)}
                         />
@@ -67,13 +81,13 @@ export default function SignIn(props: SignInProps) {
                             fullWidth
                             variant="contained"
                             sx={{mt: 3, mb: 2}}
-                            onClick={e => signin(e)}
+                            onClick={e => signup(e)}
                         >
-                            Sign In
+                            Sign Up
                         </Button>
                         <Grid className="footer">
                             <Typography component="h5">
-                                Don't have an account? <NavLink to={"/signup"}>Sign up</NavLink>
+                                Already have an account <NavLink to={"/signin"}>Sign in</NavLink>
                             </Typography>
                         </Grid>
                     </Box>
