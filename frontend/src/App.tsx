@@ -57,7 +57,7 @@ function App() {
                     <Route path={"/"} element={<Home/>}/>
                     <Route path={"*"} element={<NotFound/>}/>
                     <Route path={"/aboutUs"} element={<AboutUs/>}/>
-                    <Route path={"/tickets"} element={<Tickets/>}/>
+                    <Route path={"/tickets"} element={<Tickets token={user?.token}/>}/>
                     <Route path={"/signin"} element={<SignIn setUser={setUser}/>}/>
                     <Route path={"/signup"} element={<SignUp/>}/>
                     <Route path={"/impressum"} element={<Impressum/>}/>

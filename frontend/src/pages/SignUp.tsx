@@ -18,7 +18,7 @@ export default function SignUp() {
         createUser(firstname, lastname, username, "{noop}" + password)
             .then(() => {
                 setAlert(<Alert severity="success">Created account for {username}. Redirecting to <NavLink to={"/signin"}>Sign in</NavLink></Alert>)
-                setTimeout(() => navigate("/signin"), 5000)
+                setTimeout(() => navigate("/signin"), 3000)
             })
             .catch(() => setAlert(<Alert severity="error">Failed to create account</Alert>))
     }
